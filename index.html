@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>二人决策助手</title>
+<style>
+
+        body { font-family: Arial, sans-serif; text-align: center; padding: 20px; }
+
+        input { padding: 10px; margin: 10px; font-size: 18px; width: 80px; }
+
+        button { padding: 10px 20px; font-size: 18px; cursor: pointer; }
+
+        #result { margin-top: 20px; font-size: 22px; font-weight: bold; }
+</style>
+</head>
+<body>
+<h2>二人决策助手</h2>
+<p>请输入你们的评分（0-10）：</p>
+<label for="score1">你的评分：</label>
+<input type="number" id="score1" min="0" max="10">
+<label for="score2">J 的评分：</label>
+<input type="number" id="score2" min="0" max="10">
+<br><br>
+<button onclick="makeDecision()">提交</button>
+<p id="result"></p>
+<script>
+
+        function makeDecision() {
+
+            let score1 = parseInt(document.getElementById("score1").value) || 0;
+
+            let score2 = parseInt(document.getElementById("score2").value) || 0;
+
+            let total = score1 + score2;
+
+            let resultText = "";
+
+            if (total >= 14) {
+
+                resultText = "✅ 立刻执行";
+
+            } else if (total >= 10 && score1 >= 4 && score2 >= 4) {
+
+                resultText = "⏳ 进入犹豫期";
+
+            } else {
+
+                resultText = "❌ 放弃";
+
+            }
+
+            document.getElementById("result").innerText = resultText;
+
+        }
+</script>
+</body>
+</html> 
